@@ -110,77 +110,77 @@ mod tests {
     fn basic() {
         let mut res = vec![10, 8, 4, 3, 1, 9, 2, 7, 5, 6];
         heap_sort(&mut res);
-        assert_eq!(res, vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        assert_eq!(res, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     }
 
     #[test]
     fn basic_string() {
         let mut res = vec!["a", "bb", "d", "cc"];
         heap_sort(&mut res);
-        assert_eq!(res, vec!["a", "bb", "cc", "d"]);
+        assert_eq!(res, ["a", "bb", "cc", "d"]);
     }
 
     #[test]
     fn empty() {
         let mut arr: Vec<i32> = Vec::new();
         heap_sort(&mut arr);
-        assert_eq!(&arr, &[]);
+        assert_eq!(arr, []);
     }
 
     #[test]
     fn single_element() {
         let mut arr = vec![1];
         heap_sort(&mut arr);
-        assert_eq!(&arr, &[1]);
+        assert_eq!(arr, [1]);
     }
 
     #[test]
     fn two_elements_sorted() {
         let mut res = vec![1, 2];
         heap_sort(&mut res);
-        assert_eq!(res, vec![1, 2]);
+        assert_eq!(res, [1, 2]);
     }
 
     #[test]
     fn two_elements_unsorted() {
         let mut res = vec![2, 1];
         heap_sort(&mut res);
-        assert_eq!(res, vec![1, 2]);
+        assert_eq!(res, [1, 2]);
     }
 
     #[test]
     fn sorted_array() {
         let mut arr = vec![1, 2, 3, 4];
         heap_sort(&mut arr);
-        assert_eq!(&arr, &[1, 2, 3, 4]);
+        assert_eq!(arr, [1, 2, 3, 4]);
     }
 
     #[test]
     fn unsorted_array() {
         let mut arr = vec![3, 4, 2, 1];
         heap_sort(&mut arr);
-        assert_eq!(&arr, &[1, 2, 3, 4]);
+        assert_eq!(arr, [1, 2, 3, 4]);
     }
 
     #[test]
     fn odd_number_of_elements() {
         let mut arr = vec![3, 4, 2, 1, 7];
         heap_sort(&mut arr);
-        assert_eq!(&arr, &[1, 2, 3, 4, 7]);
+        assert_eq!(arr, [1, 2, 3, 4, 7]);
     }
 
     #[test]
     fn repeated_elements() {
         let mut arr = vec![542, 542, 542, 542];
         heap_sort(&mut arr);
-        assert_eq!(&arr, &vec![542, 542, 542, 542]);
+        assert_eq!(arr, [542, 542, 542, 542]);
     }
 
     #[test]
     fn reverse_sorted() {
         let mut res = vec![4, 3, 2, 1];
         heap_sort(&mut res);
-        assert_eq!(res, vec![1, 2, 3, 4]);
+        assert_eq!(res, [1, 2, 3, 4]);
     }
 
     #[test]
