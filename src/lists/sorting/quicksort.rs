@@ -1,12 +1,4 @@
 pub fn quick_sort<T: PartialOrd>(vec: &mut [T]) {
-    if vec.len() < 2 {
-        return;
-    }
-
-    _quick_sort(vec);
-}
-
-fn _quick_sort<T: PartialOrd>(vec: &mut [T]) {
     let vec_len = vec.len();
     if vec_len < 2 {
         return;
@@ -14,8 +6,8 @@ fn _quick_sort<T: PartialOrd>(vec: &mut [T]) {
 
     let pivot_index = first_pivot_index(vec);
     let partition_index = partition(vec, pivot_index);
-    _quick_sort(&mut vec[0..partition_index]);
-    _quick_sort(&mut vec[partition_index + 1..vec_len]);
+    quick_sort(&mut vec[..partition_index]);
+    quick_sort(&mut vec[partition_index + 1..]);
 }
 
 fn first_pivot_index<T>(_vec: &mut [T]) -> usize {
@@ -106,56 +98,56 @@ mod tests {
     fn basic() {
         let mut res = vec![10, 8, 4, 3, 1, 9, 2, 7, 5, 6];
         quick_sort(&mut res);
-        assert_eq!(res, vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        assert_eq!(res, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     }
 
     #[test]
     fn basic_string() {
         let mut res = vec!["a", "bb", "d", "cc"];
         quick_sort(&mut res);
-        assert_eq!(res, vec!["a", "bb", "cc", "d"]);
+        assert_eq!(res, ["a", "bb", "cc", "d"]);
     }
 
     #[test]
     fn empty() {
         let mut res = Vec::<u8>::new();
         quick_sort(&mut res);
-        assert_eq!(res, vec![]);
+        assert_eq!(res, []);
     }
 
     #[test]
     fn one_element() {
         let mut res = vec![1];
         quick_sort(&mut res);
-        assert_eq!(res, vec![1]);
+        assert_eq!(res, [1]);
     }
 
     #[test]
     fn two_elements_sorted() {
         let mut res = vec![1, 2];
         quick_sort(&mut res);
-        assert_eq!(res, vec![1, 2]);
+        assert_eq!(res, [1, 2]);
     }
 
     #[test]
     fn two_elements_unsorted() {
         let mut res = vec![2, 1];
         quick_sort(&mut res);
-        assert_eq!(res, vec![1, 2]);
+        assert_eq!(res, [1, 2]);
     }
 
     #[test]
     fn pre_sorted() {
         let mut res = vec![1, 2, 3, 4];
         quick_sort(&mut res);
-        assert_eq!(res, vec![1, 2, 3, 4]);
+        assert_eq!(res, [1, 2, 3, 4]);
     }
 
     #[test]
     fn reverse_sorted() {
         let mut res = vec![4, 3, 2, 1];
         quick_sort(&mut res);
-        assert_eq!(res, vec![1, 2, 3, 4]);
+        assert_eq!(res, [1, 2, 3, 4]);
     }
 
     #[test]
@@ -169,7 +161,7 @@ mod tests {
     fn repeated_elements() {
         let mut arr = vec![542, 542, 542, 542];
         quick_sort(&mut arr);
-        assert_eq!(&arr, &vec![542, 542, 542, 542]);
+        assert_eq!(arr, [542, 542, 542, 542]);
     }
 
     // FIXME add benchmark to compare this against the stdlib
